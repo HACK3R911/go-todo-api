@@ -6,7 +6,7 @@ Feature Description:
 - Possibility to create tasks in lists
 
 ## Stack: 
-Golang, PostgreSQL, Docker
+Golang, PostgreSQL, Docker, Postman
 
 ## Endpoints:
 
