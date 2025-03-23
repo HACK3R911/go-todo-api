@@ -5,6 +5,14 @@ import (
 	"github.com/jmoiron/sqlx"
 )
 
+const (
+	usersTable      = "users"
+	todoListTable   = "todo_lists"
+	usersListsTable = "users_lists"
+	todoTasks       = "todo_tasks"
+	listsTasksTable = "lists_tasks"
+)
+
 type Config struct {
 	Host     string
 	Port     string
@@ -15,8 +23,8 @@ type Config struct {
 }
 
 func NewPostgreDB(cfg Config) (*sqlx.DB, error) {
-	db, err := sqlx.Open("postgres", fmt.Sprintf("host=%s port=%s user=%s dbname=%s sslmode=%s",
-		cfg.Host, cfg.Port, cfg.Username, cfg.DBName, cfg.SSLMode))
+	db, err := sqlx.Open("postgres", fmt.Sprintf("host=%s port=%s user=%s password=%s dbname=%s sslmode=%s",
+		cfg.Host, cfg.Port, cfg.Username, cfg.Password, cfg.DBName, cfg.SSLMode))
 	if err != nil {
 		return nil, err
 	}
