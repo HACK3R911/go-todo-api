@@ -12,9 +12,9 @@ CREATE TABLE todo_lists (
 );
 
 CREATE TABLE users_lists (
-    id SERIAL,
-    user_id INT REFERENCES  users(id) ON DELETE CASCADE NOT NULL,
-    list_id INT REFERENCES  todo_lists(id) ON DELETE CASCADE NOT NULL
+    id SERIAL NOT NULL UNIQUE,
+    user_id INT REFERENCES  users (id) ON DELETE CASCADE NOT NULL,
+    list_id INT REFERENCES  todo_lists (id) ON DELETE CASCADE NOT NULL
 );
 
 CREATE TABLE todo_tasks (
@@ -25,7 +25,7 @@ CREATE TABLE todo_tasks (
 );
 
 CREATE TABLE lists_tasks (
-    id SERIAL,
-    task_id INT REFERENCES  todo_tasks(id) ON DELETE CASCADE NOT NULL,
-    list_id INT REFERENCES  todo_lists(id) ON DELETE CASCADE NOT NULL
+    id SERIAL NOT NULL UNIQUE,
+    task_id INT REFERENCES  todo_tasks (id) ON DELETE CASCADE NOT NULL,
+    list_id INT REFERENCES  todo_lists (id) ON DELETE CASCADE NOT NULL
 )
