@@ -1,5 +1,7 @@
 package models
 
+import "errors"
+
 type TodoList struct {
 	Id          int    `json:"id" db:"id"`
 	Title       string `json:"title" db:"title" binding:"required"`
@@ -23,4 +25,17 @@ type ListsTask struct {
 	Id     int
 	ListId int
 	TaskId int
+}
+
+type UpdateListInput struct {
+	Title       *string `json:"title"`
+	Description *string `json:"description"`
+}
+
+func (i UpdateListInput) Validate() error {
+	if i.Title == nil && i.Description == nil {
+		errors.New("update: structure has zero values")
+	}
+
+	return nil
 }
