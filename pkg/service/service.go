@@ -22,6 +22,8 @@ type TodoList interface {
 type TodoTask interface {
 	Create(userId, listId int, task models.TodoTask) (int, error)
 	GetAll(userId, listId int) ([]models.TodoTask, error)
+	GetById(userId, taskId int) (models.TodoTask, error)
+	Delete(userId, taskId int) error
 }
 
 type Service struct {

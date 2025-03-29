@@ -56,6 +56,24 @@ func (h *Handler) getAllTasks(c *gin.Context) {
 }
 
 func (h *Handler) getTaskById(c *gin.Context) {
+	userId, err := getUserId(c)
+	if err != nil {
+		return
+	}
+
+	taskId, err := strconv.Atoi(c.Param("id"))
+	if err != nil {
+		newErrorResponse(c, http.StatusBadRequest, "invalid list id param")
+		return
+	}
+
+	task, err := h.services.TodoTask.GetById(userId, taskId)
+	if err != nil {
+		newErrorResponse(c, http.StatusInternalServerError, err.Error())
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{"tasks": task})
 
 }
 
@@ -64,5 +82,22 @@ func (h *Handler) updateTask(c *gin.Context) {
 }
 
 func (h *Handler) deleteTask(c *gin.Context) {
+	userId, err := getUserId(c)
+	if err != nil {
+		return
+	}
 
+	taskId, err := strconv.Atoi(c.Param("id"))
+	if err != nil {
+		newErrorResponse(c, http.StatusBadRequest, "invalid list id param")
+		return
+	}
+
+	err = h.services.TodoTask.Delete(userId, taskId)
+	if err != nil {
+		newErrorResponse(c, http.StatusInternalServerError, err.Error())
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{"tasks": statusResponce{"ok"}})
 }

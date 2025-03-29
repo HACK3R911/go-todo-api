@@ -27,3 +27,11 @@ func (s *TodoTaskService) Create(userId, listId int, task models.TodoTask) (int,
 func (s *TodoTaskService) GetAll(userId, listId int) ([]models.TodoTask, error) {
 	return s.repo.GetAll(userId, listId)
 }
+
+func (s *TodoTaskService) GetById(userId, taskId int) (models.TodoTask, error) {
+	return s.repo.GetById(userId, taskId)
+}
+
+func (s *TodoTaskService) Delete(userId, taskId int) error {
+	return s.repo.Delete(userId, taskId)
+}
