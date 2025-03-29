@@ -35,3 +35,7 @@ func (s *TodoTaskService) GetById(userId, taskId int) (models.TodoTask, error) {
 func (s *TodoTaskService) Delete(userId, taskId int) error {
 	return s.repo.Delete(userId, taskId)
 }
+
+func (s *TodoTaskService) Update(userId, taskId int, input models.UpdateTaskInput) error {
+	return s.repo.Update(userId, taskId, input)
+}

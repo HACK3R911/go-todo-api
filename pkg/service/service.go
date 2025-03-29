@@ -24,6 +24,7 @@ type TodoTask interface {
 	GetAll(userId, listId int) ([]models.TodoTask, error)
 	GetById(userId, taskId int) (models.TodoTask, error)
 	Delete(userId, taskId int) error
+	Update(userId, taskId int, input models.UpdateTaskInput) error
 }
 
 type Service struct {

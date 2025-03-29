@@ -23,7 +23,7 @@ type TodoTask interface {
 	GetAll(userId, listId int) ([]models.TodoTask, error)
 	GetById(userId, taskId int) (models.TodoTask, error)
 	Delete(userId, listId int) error
-	//Update(userId, taskId int, input models.UpdateTaskInput) error
+	Update(userId, taskId int, input models.UpdateTaskInput) error
 }
 
 type Repository struct {
