@@ -1,11 +1,14 @@
 package main
 
 import (
+	"context"
 	"github.com/HACK3R911/go-todo-api"
 	"github.com/HACK3R911/go-todo-api/pkg/handler"
 	"github.com/HACK3R911/go-todo-api/pkg/repository"
 	"github.com/HACK3R911/go-todo-api/pkg/service"
 	"os"
+	"os/signal"
+	"syscall"
 
 	"github.com/joho/godotenv"
 	_ "github.com/lib/pq"
@@ -42,8 +45,26 @@ func main() {
 	handlers := handler.NewHandler(services)
 
 	srv := new(server.Server)
-	if err := srv.Run(viper.GetString("port"), handlers.InitRoutes()); err != nil {
-		logrus.Fatalf("error running server: %s", err.Error())
+	go func() {
+		if err := srv.Run(viper.GetString("port"), handlers.InitRoutes()); err != nil {
+			logrus.Fatalf("error running server: %s", err.Error())
+		}
+	}()
+
+	logrus.Println("TodoApp is started")
+
+	quit := make(chan os.Signal, 1)
+	signal.Notify(quit, syscall.SIGTERM, syscall.SIGINT)
+	<-quit
+
+	logrus.Println("TodoApp is stopped")
+
+	if err := srv.Shutdown(context.Background()); err != nil {
+		logrus.Errorf("error on server shutdown: %s", err.Error())
+	}
+
+	if err := db.Close(); err != nil {
+		logrus.Errorf("error on db connection close: %s", err.Error())
 	}
 }
 
