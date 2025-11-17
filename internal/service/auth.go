@@ -6,13 +6,13 @@ import (
 	"fmt"
 	"github.com/HACK3R911/go-todo-api/internal/models"
 	"github.com/HACK3R911/go-todo-api/pkg/repository"
-	"github.com/dgrijalva/jwt-go"
+	"github.com/golang-jwt/jwt"
 	"time"
 )
 
 const (
-	salt       = "zexsrecdhjkhulk"
-	signingKey = "secret"
+	salt       = "zexsrecdhjkhulk" // в env
+	signingKey = "secret"          // в env
 	tokenTTL   = 12 * time.Hour
 )
 
