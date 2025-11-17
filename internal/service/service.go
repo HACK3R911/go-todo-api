@@ -2,7 +2,7 @@ package service
 
 import (
 	"github.com/HACK3R911/go-todo-api/internal/models"
-	"github.com/HACK3R911/go-todo-api/pkg/repository"
+	"github.com/HACK3R911/go-todo-api/internal/repository"
 )
 
 type Authorization interface {
@@ -33,10 +33,10 @@ type Service struct {
 	TodoTask
 }
 
-func NewService(repos *repository.Repository) *Service {
+func NewService(repo *repository.Repository) *Service {
 	return &Service{
-		Authorization: NewAuthService(repos.Authorization),
-		TodoList:      NewTodoListService(repos.TodoList),
-		TodoTask:      NewTodoTaskService(repos.TodoTask, repos.TodoList),
+		Authorization: NewAuthService(repo.Authorization),
+		TodoList:      NewTodoListService(repo.TodoList),
+		TodoTask:      NewTodoTaskService(repo.TodoTask, repo.TodoList),
 	}
 }

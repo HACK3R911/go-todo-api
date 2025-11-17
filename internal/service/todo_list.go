@@ -2,7 +2,7 @@ package service
 
 import (
 	"github.com/HACK3R911/go-todo-api/internal/models"
-	"github.com/HACK3R911/go-todo-api/pkg/repository"
+	"github.com/HACK3R911/go-todo-api/internal/repository"
 )
 
 type TodoListService struct {

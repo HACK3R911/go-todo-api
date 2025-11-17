@@ -1,7 +1,7 @@
 package handler
 
 import (
-	"github.com/HACK3R911/go-todo-api/pkg/service"
+	"github.com/HACK3R911/go-todo-api/internal/service"
 	"github.com/gin-gonic/gin"
 )
 

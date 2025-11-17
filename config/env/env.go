@@ -19,11 +19,6 @@ const (
 var _ config.ServerConfig = (*serverConfig)(nil)
 var _ config.PostgresConfig = (*postgresConfig)(nil)
 
-type Config struct {
-	serverConfig
-	postgresConfig
-}
-
 type serverConfig struct {
 	port string
 }
@@ -93,26 +88,26 @@ func (cfg *serverConfig) ServerPort() string {
 	return cfg.port
 }
 
-func (cfg *postgresConfig) DB_Host() string {
+func (cfg *postgresConfig) DBHost() string {
 	return cfg.host
 }
 
-func (cfg *postgresConfig) DB_Port() string {
+func (cfg *postgresConfig) DBPort() string {
 	return cfg.port
 }
 
-func (cfg *postgresConfig) DB_Username() string {
+func (cfg *postgresConfig) DBUsername() string {
 	return cfg.username
 }
 
-func (cfg *postgresConfig) DB_Password() string {
+func (cfg *postgresConfig) DBPassword() string {
 	return cfg.password
 }
 
-func (cfg *postgresConfig) DB_Name() string {
+func (cfg *postgresConfig) DBName() string {
 	return cfg.name
 }
 
-func (cfg *postgresConfig) DB_SSLMode() string {
+func (cfg *postgresConfig) DBSSLMode() string {
 	return cfg.sslMode
 }

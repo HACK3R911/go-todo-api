@@ -5,7 +5,7 @@ import (
 	"errors"
 	"fmt"
 	"github.com/HACK3R911/go-todo-api/internal/models"
-	"github.com/HACK3R911/go-todo-api/pkg/repository"
+	"github.com/HACK3R911/go-todo-api/internal/repository"
 	"github.com/golang-jwt/jwt"
 	"time"
 )

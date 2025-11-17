@@ -6,6 +6,11 @@ import (
 	"os"
 )
 
+type Config struct {
+	ServerConfig   ServerConfig
+	PostgresConfig PostgresConfig
+}
+
 func Load(path string) error {
 	v := viper.New()
 	v.SetConfigFile(path)
@@ -29,10 +34,10 @@ type ServerConfig interface {
 }
 
 type PostgresConfig interface {
-	DB_Host() string
-	DB_Port() string
-	DB_Username() string
-	DB_Password() string
-	DB_Name() string
-	DB_SSLMode() string
+	DBHost() string
+	DBPort() string
+	DBUsername() string
+	DBPassword() string
+	DBName() string
+	DBSSLMode() string
 }
